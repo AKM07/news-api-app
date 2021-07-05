@@ -22,6 +22,6 @@ Future baseDio() async {
 }
 
 Future setupLocator() async {
-  PreferencesUtil util = await PreferencesUtil.getInstance();
+  PreferencesUtil util = (await PreferencesUtil.getInstance())!;
   locator.registerSingleton<PreferencesUtil>(util);
 }

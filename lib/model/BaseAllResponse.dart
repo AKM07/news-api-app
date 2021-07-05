@@ -1,10 +1,9 @@
-
 import 'LoadApiStatus.dart';
 
 class BaseAllResponse<T> {
-  LoadApiStatus status;
-  T data;
-  String message;
+  LoadApiStatus? status;
+  T? data;
+  String? message;
 
   BaseAllResponse();
 

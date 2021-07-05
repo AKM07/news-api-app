@@ -18,7 +18,6 @@ part of 'sqliteModel.dart';
 //  - also you can batch update or batch delete by using delete/update methods instead of tosingle/tolist methods
 //    Enjoy.. Huseyin Tokpunar
 
-// ignore_for_file:
 // BEGIN TABLES
 // Account TABLE
 class TableAccount extends SqfEntityTableBase {
@@ -26,33 +25,46 @@ class TableAccount extends SqfEntityTableBase {
     // declare properties of EntityTable
     tableName = 'account';
     primaryKeyName = '';
-    primaryKeyType = PrimaryKeyType.integer_auto_incremental;
     useSoftDeleting = false;
     // when useSoftDeleting is true, creates a field named 'isDeleted' on the table, and set to '1' this field when item deleted (does not hard delete)
 
     // declare fields
     fields = [
-      SqfEntityFieldBase('id', DbType.integer,
-          isPrimaryKeyField: true, isNotNull: false),
-      SqfEntityFieldBase('userId', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('email', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('fullName', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('gender', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('address', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('phone', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('birthDate', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('city', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('zipCode', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('isActive', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('idDoku', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('whatsAppNumber', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('loginCheck', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('deviceLoyalty', DbType.text, isNotNull: false),
-      SqfEntityFieldBase('createDate', DbType.text, isNotNull: false),
+      SqfEntityFieldBase('id', DbType.integer, isPrimaryKeyField: true),
+      SqfEntityFieldBase('userId', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('email', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('fullName', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('gender', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('address', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('phone', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('birthDate', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('city', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('zipCode', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('isActive', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('idDoku', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('whatsAppNumber', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('loginCheck', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('deviceLoyalty', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
+      SqfEntityFieldBase('createDate', DbType.text,
+          isUnique: false, isNotNull: false, isIndex: false),
     ];
     super.init();
   }
-  static SqfEntityTableBase _instance;
+  static SqfEntityTableBase? _instance;
   static SqfEntityTableBase get getInstance {
     return _instance = _instance ?? TableAccount();
   }
@@ -72,7 +84,7 @@ class SequenceIdentitySequence extends SqfEntitySequenceBase {
     startWith = 0; /* optional. default is 0 */
     super.init();
   }
-  static SequenceIdentitySequence _instance;
+  static SequenceIdentitySequence? _instance;
   static SequenceIdentitySequence get getInstance {
     return _instance = _instance ?? SequenceIdentitySequence();
   }
@@ -80,8 +92,8 @@ class SequenceIdentitySequence extends SqfEntitySequenceBase {
 // END SEQUENCES
 
 // BEGIN DATABASE MODEL
-class AgrotechDBModel extends SqfEntityModelProvider {
-  AgrotechDBModel() {
+class SkeletonDBModel extends SqfEntityModelProvider {
+  SkeletonDBModel() {
     databaseName = dbModel.databaseName;
     password = dbModel.password;
     dbVersion = dbModel.dbVersion;
@@ -163,6 +175,7 @@ class Account {
       this.createDate) {
     _setDefaultValues();
   }
+  // fromMap v2.0
   Account.fromMap(Map<String, dynamic> o, {bool setDefaultValues = true}) {
     if (setDefaultValues) {
       _setDefaultValues();
@@ -171,76 +184,76 @@ class Account {
       id = int.tryParse(o['id'].toString());
     }
     if (o['userId'] != null) {
-      userId = o['userId'] as String;
+      userId = o['userId'].toString();
     }
     if (o['email'] != null) {
-      email = o['email'] as String;
+      email = o['email'].toString();
     }
     if (o['fullName'] != null) {
-      fullName = o['fullName'] as String;
+      fullName = o['fullName'].toString();
     }
     if (o['gender'] != null) {
-      gender = o['gender'] as String;
+      gender = o['gender'].toString();
     }
     if (o['address'] != null) {
-      address = o['address'] as String;
+      address = o['address'].toString();
     }
     if (o['phone'] != null) {
-      phone = o['phone'] as String;
+      phone = o['phone'].toString();
     }
     if (o['birthDate'] != null) {
-      birthDate = o['birthDate'] as String;
+      birthDate = o['birthDate'].toString();
     }
     if (o['city'] != null) {
-      city = o['city'] as String;
+      city = o['city'].toString();
     }
     if (o['zipCode'] != null) {
-      zipCode = o['zipCode'] as String;
+      zipCode = o['zipCode'].toString();
     }
     if (o['isActive'] != null) {
-      isActive = o['isActive'] as String;
+      isActive = o['isActive'].toString();
     }
     if (o['idDoku'] != null) {
-      idDoku = o['idDoku'] as String;
+      idDoku = o['idDoku'].toString();
     }
     if (o['whatsAppNumber'] != null) {
-      whatsAppNumber = o['whatsAppNumber'] as String;
+      whatsAppNumber = o['whatsAppNumber'].toString();
     }
     if (o['loginCheck'] != null) {
-      loginCheck = o['loginCheck'] as String;
+      loginCheck = o['loginCheck'].toString();
     }
     if (o['deviceLoyalty'] != null) {
-      deviceLoyalty = o['deviceLoyalty'] as String;
+      deviceLoyalty = o['deviceLoyalty'].toString();
     }
     if (o['createDate'] != null) {
-      createDate = o['createDate'] as String;
+      createDate = o['createDate'].toString();
     }
 
     isSaved = true;
   }
   // FIELDS (Account)
-  int id;
-  String userId;
-  String email;
-  String fullName;
-  String gender;
-  String address;
-  String phone;
-  String birthDate;
-  String city;
-  String zipCode;
-  String isActive;
-  String idDoku;
-  String whatsAppNumber;
-  String loginCheck;
-  String deviceLoyalty;
-  String createDate;
-  bool isSaved;
-  BoolResult saveResult;
+  int? id;
+  String? userId;
+  String? email;
+  String? fullName;
+  String? gender;
+  String? address;
+  String? phone;
+  String? birthDate;
+  String? city;
+  String? zipCode;
+  String? isActive;
+  String? idDoku;
+  String? whatsAppNumber;
+  String? loginCheck;
+  String? deviceLoyalty;
+  String? createDate;
+  bool? isSaved;
+  BoolResult? saveResult;
   // end FIELDS (Account)
 
   static const bool _softDeleteActivated = false;
-  AccountManager __mnAccount;
+  AccountManager? __mnAccount;
 
   AccountManager get _mnAccount {
     return __mnAccount = __mnAccount ?? AccountManager();
@@ -440,21 +453,21 @@ class Account {
     ];
   }
 
-  // static Future<List<Account>> fromWebUrl(String url,
-  //     {Map<String, String> headers}) async {
-  //   try {
-  //     final response = await http.get(url, headers: headers);
-  //     return await fromJson(response.body);
-  //   } catch (e) {
-  //     print(
-  //         'SQFENTITY ERROR Account.fromWebUrl: ErrorMessage: ${e.toString()}');
-  //     return null;
-  //   }
-  // }
+  static Future<List<Account>?> fromWebUrl(Uri uri,
+      {Map<String, String>? headers}) async {
+    try {
+      final response = await http.get(uri, headers: headers);
+      return await fromJson(response.body);
+    } catch (e) {
+      print(
+          'SQFENTITY ERROR Account.fromWebUrl: ErrorMessage: ${e.toString()}');
+      return null;
+    }
+  }
 
-  // Future<http.Response> postUrl(String url, {Map<String, String> headers}) {
-  //   return http.post(url, headers: headers, body: toJson());
-  // }
+  Future<http.Response> postUrl(Uri uri, {Map<String, String>? headers}) {
+    return http.post(uri, headers: headers, body: toJson());
+  }
 
   static Future<List<Account>> fromJson(String jsonBody) async {
     final Iterable list = await json.decode(jsonBody) as Iterable;
@@ -471,9 +484,9 @@ class Account {
 
   static Future<List<Account>> fromMapList(List<dynamic> data,
       {bool preload = false,
-      List<String> preloadFields,
+      List<String>? preloadFields,
       bool loadParents = false,
-      List<String> loadedFields,
+      List<String>? loadedFields,
       bool setDefaultValues = true}) async {
     final List<Account> objList = <Account>[];
     loadedFields = loadedFields ?? [];
@@ -488,7 +501,7 @@ class Account {
 
   /// returns Account by ID if exist, otherwise returns null
   ///
-  /// Primary Keys: int id
+  /// Primary Keys: int? id
   ///
   /// bool preload: if true, loads all related child objects (Set preload to true if you want to load all fields related to child or parent)
   ///
@@ -502,15 +515,15 @@ class Account {
 
   ///
   /// <returns>returns Account if exist, otherwise returns null
-  Future<Account> getById(int id,
+  Future<Account?> getById(int? id,
       {bool preload = false,
-      List<String> preloadFields,
+      List<String>? preloadFields,
       bool loadParents = false,
-      List<String> loadedFields}) async {
+      List<String>? loadedFields}) async {
     if (id == null) {
       return null;
     }
-    Account obj;
+    Account? obj;
     final data = await _mnAccount.getById([id]);
     if (data.length != 0) {
       obj = Account.fromMap(data[0] as Map<String, dynamic>);
@@ -523,10 +536,10 @@ class Account {
   /// Saves the (Account) object. If the id field is null, saves as a new record and returns new id, if id is not null then updates record
 
   /// <returns>Returns id
-  Future<int> save() async {
-    if (id == null || id == 0 || !isSaved) {
+  Future<int?> save() async {
+    if (id == null || id == 0 || !isSaved!) {
       await _mnAccount.insert(this);
-      if (saveResult != null && saveResult.success) {
+      if (saveResult!.success) {
         isSaved = true;
       }
     } else {
@@ -543,47 +556,48 @@ class Account {
   static Future<List<dynamic>> saveAll(List<Account> accounts) async {
     // final results = _mnAccount.saveAll('INSERT OR REPLACE INTO account (id, userId, email, fullName, gender, address, phone, birthDate, city, zipCode, isActive, idDoku, whatsAppNumber, loginCheck, deviceLoyalty, createDate)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',accounts);
     // return results; removed in sqfentity_gen 1.3.0+6
-    await AgrotechDBModel().batchStart();
+    await SkeletonDBModel().batchStart();
     for (final obj in accounts) {
       await obj.save();
     }
-    //    return AgrotechDBModel().batchCommit();
-    final result = await AgrotechDBModel().batchCommit();
+    //    return SkeletonDBModel().batchCommit();
+    final result = await SkeletonDBModel().batchCommit();
     for (int i = 0; i < accounts.length; i++) {
       if (accounts[i].id == null) {
-        accounts[i].id = result[i] as int;
+        accounts[i].id = result![i] as int;
       }
     }
 
-    return result;
+    return result!;
   }
 
   /// Updates if the record exists, otherwise adds a new row
 
   /// <returns>Returns id
-  Future<int> upsert() async {
+
+  Future<int?> upsert() async {
     try {
-      if (await _mnAccount.rawInsert(
-              'INSERT OR REPLACE INTO account (id, userId, email, fullName, gender, address, phone, birthDate, city, zipCode, isActive, idDoku, whatsAppNumber, loginCheck, deviceLoyalty, createDate)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-              [
-                id,
-                userId,
-                email,
-                fullName,
-                gender,
-                address,
-                phone,
-                birthDate,
-                city,
-                zipCode,
-                isActive,
-                idDoku,
-                whatsAppNumber,
-                loginCheck,
-                deviceLoyalty,
-                createDate
-              ]) ==
-          1) {
+      final result = await _mnAccount.rawInsert(
+          'INSERT OR REPLACE INTO account (id, userId, email, fullName, gender, address, phone, birthDate, city, zipCode, isActive, idDoku, whatsAppNumber, loginCheck, deviceLoyalty, createDate)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+          [
+            id,
+            userId,
+            email,
+            fullName,
+            gender,
+            address,
+            phone,
+            birthDate,
+            city,
+            zipCode,
+            isActive,
+            idDoku,
+            whatsAppNumber,
+            loginCheck,
+            deviceLoyalty,
+            createDate
+          ]);
+      if (result! > 0) {
         saveResult = BoolResult(
             success: true,
             successMessage: 'Account id=$id updated successfully');
@@ -596,7 +610,7 @@ class Account {
       saveResult = BoolResult(
           success: false,
           errorMessage: 'Account Save failed. Error: ${e.toString()}');
-      return 0;
+      return null;
     }
   }
 
@@ -615,6 +629,7 @@ class Account {
   /// Deletes Account
 
   /// <returns>BoolResult res.success=Deleted, not res.success=Can not deleted
+
   Future<BoolResult> delete([bool hardDelete = false]) async {
     print('SQFENTITIY: delete Account invoked (id=$id)');
     if (!_softDeleteActivated || hardDelete) {
@@ -628,14 +643,14 @@ class Account {
   }
 
   AccountFilterBuilder select(
-      {List<String> columnsToSelect, bool getIsDeleted}) {
+      {List<String>? columnsToSelect, bool? getIsDeleted}) {
     return AccountFilterBuilder(this)
       .._getIsDeleted = getIsDeleted == true
       ..qparams.selectColumns = columnsToSelect;
   }
 
   AccountFilterBuilder distinct(
-      {List<String> columnsToSelect, bool getIsDeleted}) {
+      {List<String>? columnsToSelect, bool? getIsDeleted}) {
     return AccountFilterBuilder(this)
       .._getIsDeleted = getIsDeleted == true
       ..qparams.selectColumns = columnsToSelect
@@ -646,9 +661,9 @@ class Account {
     isSaved = false;
   }
   // END METHODS
-  // CUSTOM CODES
+  // BEGIN CUSTOM CODE
   /*
-      you must define customCode property of your SqfEntityTable constant for ex:
+      you can define customCode property of your SqfEntityTable constant. For example:
       const tablePerson = SqfEntityTable(
       tableName: 'person',
       primaryKeyName: 'id',
@@ -664,16 +679,15 @@ class Account {
        }
       ''');
      */
-  // END CUSTOM CODES
+  // END CUSTOM CODE
 }
 // endregion account
 
 // region AccountField
 class AccountField extends SearchCriteria {
-  AccountField(this.accountFB) {
-    param = DbParameter();
-  }
-  DbParameter param;
+  AccountField(this.accountFB);
+  // { param = DbParameter(); }
+  DbParameter param = DbParameter();
   String _waitingNot = '';
   AccountFilterBuilder accountFB;
 
@@ -690,7 +704,7 @@ class AccountField extends SearchCriteria {
         : setCriteria(pValue, accountFB.parameters, param, SqlSyntax.NotEQuals,
             accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -703,7 +717,7 @@ class AccountField extends SearchCriteria {
         : setCriteria(pValue, accountFB.parameters, param,
             SqlSyntax.NotEQualsOrNull, accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -716,7 +730,7 @@ class AccountField extends SearchCriteria {
         SqlSyntax.IsNULL.replaceAll(SqlSyntax.notKeyword, _waitingNot),
         accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -730,7 +744,7 @@ class AccountField extends SearchCriteria {
           SqlSyntax.Contains.replaceAll(SqlSyntax.notKeyword, _waitingNot),
           accountFB._addedBlocks);
       _waitingNot = '';
-      accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+      accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
           accountFB._addedBlocks.retVal;
     }
     return accountFB;
@@ -745,9 +759,9 @@ class AccountField extends SearchCriteria {
           SqlSyntax.Contains.replaceAll(SqlSyntax.notKeyword, _waitingNot),
           accountFB._addedBlocks);
       _waitingNot = '';
-      accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+      accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
           accountFB._addedBlocks.retVal;
-      accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+      accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
           accountFB._addedBlocks.retVal;
     }
     return accountFB;
@@ -762,7 +776,7 @@ class AccountField extends SearchCriteria {
           SqlSyntax.Contains.replaceAll(SqlSyntax.notKeyword, _waitingNot),
           accountFB._addedBlocks);
       _waitingNot = '';
-      accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+      accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
           accountFB._addedBlocks.retVal;
     }
     return accountFB;
@@ -795,7 +809,7 @@ class AccountField extends SearchCriteria {
       }
     }
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -808,7 +822,7 @@ class AccountField extends SearchCriteria {
         : setCriteria(pValue, accountFB.parameters, param,
             SqlSyntax.LessThanOrEquals, accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -821,7 +835,7 @@ class AccountField extends SearchCriteria {
         : setCriteria(pValue, accountFB.parameters, param,
             SqlSyntax.GreaterThanOrEquals, accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -834,7 +848,7 @@ class AccountField extends SearchCriteria {
         : setCriteria(pValue, accountFB.parameters, param, SqlSyntax.LessThan,
             accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -847,7 +861,7 @@ class AccountField extends SearchCriteria {
         : setCriteria(pValue, accountFB.parameters, param,
             SqlSyntax.GreaterThan, accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -860,7 +874,7 @@ class AccountField extends SearchCriteria {
         SqlSyntax.IN.replaceAll(SqlSyntax.notKeyword, _waitingNot),
         accountFB._addedBlocks);
     _waitingNot = '';
-    accountFB._addedBlocks.needEndBlock[accountFB._blockIndex] =
+    accountFB._addedBlocks.needEndBlock![accountFB._blockIndex] =
         accountFB._addedBlocks.retVal;
     return accountFB;
   }
@@ -871,25 +885,19 @@ class AccountField extends SearchCriteria {
 class AccountFilterBuilder extends SearchCriteria {
   AccountFilterBuilder(Account obj) {
     whereString = '';
-    qparams = QueryParams();
-    parameters = <DbParameter>[];
-    orderByList = <String>[];
     groupByList = <String>[];
-    _addedBlocks = AddedBlocks(<bool>[], <bool>[]);
-    _addedBlocks.needEndBlock.add(false);
-    _addedBlocks.waitingStartBlock.add(false);
-    _pagesize = 0;
-    _page = 0;
+    _addedBlocks.needEndBlock!.add(false);
+    _addedBlocks.waitingStartBlock!.add(false);
     _obj = obj;
   }
-  AddedBlocks _addedBlocks;
+  AddedBlocks _addedBlocks = AddedBlocks(<bool>[], <bool>[]);
   int _blockIndex = 0;
-  List<DbParameter> parameters;
-  List<String> orderByList;
-  Account _obj;
-  QueryParams qparams;
-  int _pagesize;
-  int _page;
+  List<DbParameter> parameters = <DbParameter>[];
+  List<String> orderByList = <String>[];
+  Account? _obj;
+  QueryParams qparams = QueryParams();
+  int _pagesize = 0;
+  int _page = 0;
 
   /// put the sql keyword 'AND'
   AccountFilterBuilder get and {
@@ -909,24 +917,24 @@ class AccountFilterBuilder extends SearchCriteria {
 
   /// open parentheses
   AccountFilterBuilder get startBlock {
-    _addedBlocks.waitingStartBlock.add(true);
-    _addedBlocks.needEndBlock.add(false);
+    _addedBlocks.waitingStartBlock!.add(true);
+    _addedBlocks.needEndBlock!.add(false);
     _blockIndex++;
     if (_blockIndex > 1) {
-      _addedBlocks.needEndBlock[_blockIndex - 1] = true;
+      _addedBlocks.needEndBlock![_blockIndex - 1] = true;
     }
     return this;
   }
 
   /// String whereCriteria, write raw query without 'where' keyword. Like this: 'field1 like 'test%' and field2 = 3'
-  AccountFilterBuilder where(String whereCriteria, {dynamic parameterValue}) {
+  AccountFilterBuilder where(String? whereCriteria, {dynamic parameterValue}) {
     if (whereCriteria != null && whereCriteria != '') {
       final DbParameter param = DbParameter(
           columnName: parameterValue == null ? null : '',
           hasParameter: parameterValue != null);
       _addedBlocks = setCriteria(parameterValue ?? 0, parameters, param,
           '($whereCriteria)', _addedBlocks);
-      _addedBlocks.needEndBlock[_blockIndex] = _addedBlocks.retVal;
+      _addedBlocks.needEndBlock![_blockIndex] = _addedBlocks.retVal;
     }
     return this;
   }
@@ -954,11 +962,11 @@ class AccountFilterBuilder extends SearchCriteria {
 
   /// close parentheses
   AccountFilterBuilder get endBlock {
-    if (_addedBlocks.needEndBlock[_blockIndex]) {
+    if (_addedBlocks.needEndBlock![_blockIndex]) {
       parameters[parameters.length - 1].whereString += ' ) ';
     }
-    _addedBlocks.needEndBlock.removeAt(_blockIndex);
-    _addedBlocks.waitingStartBlock.removeAt(_blockIndex);
+    _addedBlocks.needEndBlock!.removeAt(_blockIndex);
+    _addedBlocks.waitingStartBlock!.removeAt(_blockIndex);
     _blockIndex--;
     return this;
   }
@@ -973,8 +981,8 @@ class AccountFilterBuilder extends SearchCriteria {
       if (argFields is String) {
         orderByList.add(argFields);
       } else {
-        for (String s in argFields as List<String>) {
-          if (s != null && s.isNotEmpty) {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
             orderByList.add(' $s ');
           }
         }
@@ -993,8 +1001,8 @@ class AccountFilterBuilder extends SearchCriteria {
       if (argFields is String) {
         orderByList.add('$argFields desc ');
       } else {
-        for (String s in argFields as List<String>) {
-          if (s != null && s.isNotEmpty) {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
             orderByList.add(' $s desc ');
           }
         }
@@ -1013,8 +1021,8 @@ class AccountFilterBuilder extends SearchCriteria {
       if (argFields is String) {
         groupByList.add(' $argFields ');
       } else {
-        for (String s in argFields as List<String>) {
-          if (s != null && s.isNotEmpty) {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
             groupByList.add(' $s ');
           }
         }
@@ -1033,8 +1041,8 @@ class AccountFilterBuilder extends SearchCriteria {
       if (argFields is String) {
         havingList.add(argFields);
       } else {
-        for (String s in argFields as List<String>) {
-          if (s != null && s.isNotEmpty) {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
             havingList.add(' $s ');
           }
         }
@@ -1043,97 +1051,97 @@ class AccountFilterBuilder extends SearchCriteria {
     return this;
   }
 
-  AccountField setField(AccountField field, String colName, DbType dbtype) {
+  AccountField setField(AccountField? field, String colName, DbType dbtype) {
     return AccountField(this)
       ..param = DbParameter(
           dbType: dbtype,
           columnName: colName,
-          wStartBlock: _addedBlocks.waitingStartBlock[_blockIndex]);
+          wStartBlock: _addedBlocks.waitingStartBlock![_blockIndex]);
   }
 
-  AccountField _id;
+  AccountField? _id;
   AccountField get id {
     return _id = setField(_id, 'id', DbType.integer);
   }
 
-  AccountField _userId;
+  AccountField? _userId;
   AccountField get userId {
     return _userId = setField(_userId, 'userId', DbType.text);
   }
 
-  AccountField _email;
+  AccountField? _email;
   AccountField get email {
     return _email = setField(_email, 'email', DbType.text);
   }
 
-  AccountField _fullName;
+  AccountField? _fullName;
   AccountField get fullName {
     return _fullName = setField(_fullName, 'fullName', DbType.text);
   }
 
-  AccountField _gender;
+  AccountField? _gender;
   AccountField get gender {
     return _gender = setField(_gender, 'gender', DbType.text);
   }
 
-  AccountField _address;
+  AccountField? _address;
   AccountField get address {
     return _address = setField(_address, 'address', DbType.text);
   }
 
-  AccountField _phone;
+  AccountField? _phone;
   AccountField get phone {
     return _phone = setField(_phone, 'phone', DbType.text);
   }
 
-  AccountField _birthDate;
+  AccountField? _birthDate;
   AccountField get birthDate {
     return _birthDate = setField(_birthDate, 'birthDate', DbType.text);
   }
 
-  AccountField _city;
+  AccountField? _city;
   AccountField get city {
     return _city = setField(_city, 'city', DbType.text);
   }
 
-  AccountField _zipCode;
+  AccountField? _zipCode;
   AccountField get zipCode {
     return _zipCode = setField(_zipCode, 'zipCode', DbType.text);
   }
 
-  AccountField _isActive;
+  AccountField? _isActive;
   AccountField get isActive {
     return _isActive = setField(_isActive, 'isActive', DbType.text);
   }
 
-  AccountField _idDoku;
+  AccountField? _idDoku;
   AccountField get idDoku {
     return _idDoku = setField(_idDoku, 'idDoku', DbType.text);
   }
 
-  AccountField _whatsAppNumber;
+  AccountField? _whatsAppNumber;
   AccountField get whatsAppNumber {
     return _whatsAppNumber =
         setField(_whatsAppNumber, 'whatsAppNumber', DbType.text);
   }
 
-  AccountField _loginCheck;
+  AccountField? _loginCheck;
   AccountField get loginCheck {
     return _loginCheck = setField(_loginCheck, 'loginCheck', DbType.text);
   }
 
-  AccountField _deviceLoyalty;
+  AccountField? _deviceLoyalty;
   AccountField get deviceLoyalty {
     return _deviceLoyalty =
         setField(_deviceLoyalty, 'deviceLoyalty', DbType.text);
   }
 
-  AccountField _createDate;
+  AccountField? _createDate;
   AccountField get createDate {
     return _createDate = setField(_createDate, 'createDate', DbType.text);
   }
 
-  bool _getIsDeleted;
+  bool _getIsDeleted = false;
 
   void _buildParameters() {
     if (_page > 0 && _pagesize > 0) {
@@ -1148,11 +1156,11 @@ class AccountFilterBuilder extends SearchCriteria {
     for (DbParameter param in parameters) {
       if (param.columnName != null) {
         if (param.value is List && !param.hasParameter) {
-          param.value = param.dbType == DbType.text
+          param.value = param.dbType == DbType.text || param.value[0] is String
               ? '\'${param.value.join('\',\'')}\''
               : param.value.join(',');
           whereString += param.whereString
-              .replaceAll('{field}', param.columnName)
+              .replaceAll('{field}', param.columnName!)
               .replaceAll('?', param.value.toString());
           param.value = null;
         } else {
@@ -1165,7 +1173,7 @@ class AccountFilterBuilder extends SearchCriteria {
               ..value = param.value['args'];
           }
           whereString +=
-              param.whereString.replaceAll('{field}', param.columnName);
+              param.whereString.replaceAll('{field}', param.columnName!);
         }
         if (!param.whereString.contains('?')) {
         } else {
@@ -1235,12 +1243,12 @@ class AccountFilterBuilder extends SearchCriteria {
   /// <returns>BoolResult res.success=Deleted, not res.success=Can not deleted
   Future<BoolResult> delete([bool hardDelete = false]) async {
     _buildParameters();
-    var r = BoolResult();
+    var r = BoolResult(success: false);
 
     if (Account._softDeleteActivated && !hardDelete) {
-      r = await _obj._mnAccount.updateBatch(qparams, {'isDeleted': 1});
+      r = await _obj!._mnAccount.updateBatch(qparams, {'isDeleted': 1});
     } else {
-      r = await _obj._mnAccount.delete(qparams);
+      r = await _obj!._mnAccount.delete(qparams);
     }
     return r;
   }
@@ -1252,11 +1260,11 @@ class AccountFilterBuilder extends SearchCriteria {
   /// fieldName must be String. Value is dynamic, it can be any of the (int, bool, String.. )
   Future<BoolResult> update(Map<String, dynamic> values) {
     _buildParameters();
-    if (qparams.limit > 0 || qparams.offset > 0) {
+    if (qparams.limit! > 0 || qparams.offset! > 0) {
       qparams.whereString =
-          'id IN (SELECT id from account ${qparams.whereString.isNotEmpty ? 'WHERE ${qparams.whereString}' : ''}${qparams.limit > 0 ? ' LIMIT ${qparams.limit}' : ''}${qparams.offset > 0 ? ' OFFSET ${qparams.offset}' : ''})';
+          'id IN (SELECT id from account ${qparams.whereString!.isNotEmpty ? 'WHERE ${qparams.whereString}' : ''}${qparams.limit! > 0 ? ' LIMIT ${qparams.limit}' : ''}${qparams.offset! > 0 ? ' OFFSET ${qparams.offset}' : ''})';
     }
-    return _obj._mnAccount.updateBatch(qparams, values);
+    return _obj!._mnAccount.updateBatch(qparams, values);
   }
 
   /// This method always returns Account Obj if exist, otherwise returns null
@@ -1273,16 +1281,16 @@ class AccountFilterBuilder extends SearchCriteria {
 
   ///
   /// <returns>List<Account>
-  Future<Account> toSingle(
+  Future<Account?> toSingle(
       {bool preload = false,
-      List<String> preloadFields,
+      List<String>? preloadFields,
       bool loadParents = false,
-      List<String> loadedFields}) async {
+      List<String>? loadedFields}) async {
     _pagesize = 1;
     _buildParameters();
-    final objFuture = _obj._mnAccount.toList(qparams);
+    final objFuture = _obj!._mnAccount.toList(qparams);
     final data = await objFuture;
-    Account obj;
+    Account? obj;
     if (data.isNotEmpty) {
       obj = Account.fromMap(data[0] as Map<String, dynamic>);
     } else {
@@ -1294,10 +1302,10 @@ class AccountFilterBuilder extends SearchCriteria {
   /// This method returns int. [Account]
   ///
   /// <returns>int
-  Future<int> toCount([VoidCallback Function(int c) accountCount]) async {
+  Future<int> toCount([VoidCallback Function(int c)? accountCount]) async {
     _buildParameters();
     qparams.selectColumns = ['COUNT(1) AS CNT'];
-    final accountsFuture = await _obj._mnAccount.toList(qparams);
+    final accountsFuture = await _obj!._mnAccount.toList(qparams);
     final int count = accountsFuture[0]['CNT'] as int;
     if (accountCount != null) {
       accountCount(count);
@@ -1321,9 +1329,9 @@ class AccountFilterBuilder extends SearchCriteria {
   /// <returns>List<Account>
   Future<List<Account>> toList(
       {bool preload = false,
-      List<String> preloadFields,
+      List<String>? preloadFields,
       bool loadParents = false,
-      List<String> loadedFields}) async {
+      List<String>? loadedFields}) async {
     final data = await toMapList();
     final List<Account> accountsData = await Account.fromMapList(data,
         preload: preload,
@@ -1359,7 +1367,7 @@ class AccountFilterBuilder extends SearchCriteria {
   /// <returns>List<dynamic>
   Future<List<dynamic>> toMapList() async {
     _buildParameters();
-    return await _obj._mnAccount.toList(qparams);
+    return await _obj!._mnAccount.toList(qparams);
   }
 
   /// This method returns Primary Key List SQL and Parameters retVal = Map<String,dynamic>. [Account]
@@ -1385,7 +1393,7 @@ class AccountFilterBuilder extends SearchCriteria {
     }
     final List<int> idData = <int>[];
     qparams.selectColumns = ['id'];
-    final idFuture = await _obj._mnAccount.toList(qparams);
+    final idFuture = await _obj!._mnAccount.toList(qparams);
 
     final int count = idFuture.length;
     for (int i = 0; i < count; i++) {
@@ -1400,7 +1408,7 @@ class AccountFilterBuilder extends SearchCriteria {
   Future<List<dynamic>> toListObject() async {
     _buildParameters();
 
-    final objectFuture = _obj._mnAccount.toList(qparams);
+    final objectFuture = _obj!._mnAccount.toList(qparams);
 
     final List<dynamic> objectsData = <dynamic>[];
     final data = await objectFuture;
@@ -1415,16 +1423,16 @@ class AccountFilterBuilder extends SearchCriteria {
   ///
   /// Sample usage: await Account.select(columnsToSelect: ['columnName']).toListString()
   Future<List<String>> toListString(
-      [VoidCallback Function(List<String> o) listString]) async {
+      [VoidCallback Function(List<String> o)? listString]) async {
     _buildParameters();
 
-    final objectFuture = _obj._mnAccount.toList(qparams);
+    final objectFuture = _obj!._mnAccount.toList(qparams);
 
     final List<String> objectsData = <String>[];
     final data = await objectFuture;
     final int count = data.length;
     for (int i = 0; i < count; i++) {
-      objectsData.add(data[i][qparams.selectColumns[0]].toString());
+      objectsData.add(data[i][qparams.selectColumns![0]].toString());
     }
     if (listString != null) {
       listString(objectsData);
@@ -1436,95 +1444,95 @@ class AccountFilterBuilder extends SearchCriteria {
 
 // region AccountFields
 class AccountFields {
-  static TableField _fId;
+  static TableField? _fId;
   static TableField get id {
     return _fId = _fId ?? SqlSyntax.setField(_fId, 'id', DbType.integer);
   }
 
-  static TableField _fUserId;
+  static TableField? _fUserId;
   static TableField get userId {
     return _fUserId =
         _fUserId ?? SqlSyntax.setField(_fUserId, 'userId', DbType.text);
   }
 
-  static TableField _fEmail;
+  static TableField? _fEmail;
   static TableField get email {
     return _fEmail =
         _fEmail ?? SqlSyntax.setField(_fEmail, 'email', DbType.text);
   }
 
-  static TableField _fFullName;
+  static TableField? _fFullName;
   static TableField get fullName {
     return _fFullName =
         _fFullName ?? SqlSyntax.setField(_fFullName, 'fullName', DbType.text);
   }
 
-  static TableField _fGender;
+  static TableField? _fGender;
   static TableField get gender {
     return _fGender =
         _fGender ?? SqlSyntax.setField(_fGender, 'gender', DbType.text);
   }
 
-  static TableField _fAddress;
+  static TableField? _fAddress;
   static TableField get address {
     return _fAddress =
         _fAddress ?? SqlSyntax.setField(_fAddress, 'address', DbType.text);
   }
 
-  static TableField _fPhone;
+  static TableField? _fPhone;
   static TableField get phone {
     return _fPhone =
         _fPhone ?? SqlSyntax.setField(_fPhone, 'phone', DbType.text);
   }
 
-  static TableField _fBirthDate;
+  static TableField? _fBirthDate;
   static TableField get birthDate {
     return _fBirthDate = _fBirthDate ??
         SqlSyntax.setField(_fBirthDate, 'birthDate', DbType.text);
   }
 
-  static TableField _fCity;
+  static TableField? _fCity;
   static TableField get city {
     return _fCity = _fCity ?? SqlSyntax.setField(_fCity, 'city', DbType.text);
   }
 
-  static TableField _fZipCode;
+  static TableField? _fZipCode;
   static TableField get zipCode {
     return _fZipCode =
         _fZipCode ?? SqlSyntax.setField(_fZipCode, 'zipCode', DbType.text);
   }
 
-  static TableField _fIsActive;
+  static TableField? _fIsActive;
   static TableField get isActive {
     return _fIsActive =
         _fIsActive ?? SqlSyntax.setField(_fIsActive, 'isActive', DbType.text);
   }
 
-  static TableField _fIdDoku;
+  static TableField? _fIdDoku;
   static TableField get idDoku {
     return _fIdDoku =
         _fIdDoku ?? SqlSyntax.setField(_fIdDoku, 'idDoku', DbType.text);
   }
 
-  static TableField _fWhatsAppNumber;
+  static TableField? _fWhatsAppNumber;
   static TableField get whatsAppNumber {
     return _fWhatsAppNumber = _fWhatsAppNumber ??
         SqlSyntax.setField(_fWhatsAppNumber, 'whatsAppNumber', DbType.text);
   }
 
-  static TableField _fLoginCheck;
+  static TableField? _fLoginCheck;
   static TableField get loginCheck {
     return _fLoginCheck = _fLoginCheck ??
         SqlSyntax.setField(_fLoginCheck, 'loginCheck', DbType.text);
   }
 
-  static TableField _fDeviceLoyalty;
+  static TableField? _fDeviceLoyalty;
   static TableField get deviceLoyalty {
     return _fDeviceLoyalty = _fDeviceLoyalty ??
         SqlSyntax.setField(_fDeviceLoyalty, 'deviceLoyalty', DbType.text);
   }
 
-  static TableField _fCreateDate;
+  static TableField? _fCreateDate;
   static TableField get createDate {
     return _fCreateDate = _fCreateDate ??
         SqlSyntax.setField(_fCreateDate, 'createDate', DbType.text);
@@ -1535,7 +1543,7 @@ class AccountFields {
 //region AccountManager
 class AccountManager extends SqfEntityProvider {
   AccountManager()
-      : super(AgrotechDBModel(),
+      : super(SkeletonDBModel(),
             tableName: _tableName,
             primaryKeyList: _primaryKeyList,
             whereStr: _whereStr);
@@ -1549,8 +1557,8 @@ class AccountManager extends SqfEntityProvider {
 class IdentitySequence {
   /// Assigns a new value when it is triggered and returns the new value
   /// returns Future<int>
-  Future<int> nextVal([VoidCallback Function(int o) nextval]) async {
-    final val = await AgrotechDBModelSequenceManager()
+  Future<int> nextVal([VoidCallback Function(int o)? nextval]) async {
+    final val = await SkeletonDBModelSequenceManager()
         .sequence(SequenceIdentitySequence.getInstance, true);
     if (nextval != null) {
       nextval(val);
@@ -1560,8 +1568,8 @@ class IdentitySequence {
 
   /// Get the current value
   /// returns Future<int>
-  Future<int> currentVal([VoidCallback Function(int o) currentval]) async {
-    final val = await AgrotechDBModelSequenceManager()
+  Future<int> currentVal([VoidCallback Function(int o)? currentval]) async {
+    final val = await SkeletonDBModelSequenceManager()
         .sequence(SequenceIdentitySequence.getInstance, false);
     if (currentval != null) {
       currentval(val);
@@ -1571,8 +1579,8 @@ class IdentitySequence {
 
   /// Reset sequence to start value
   /// returns start value
-  Future<int> reset([VoidCallback Function(int o) currentval]) async {
-    final val = await AgrotechDBModelSequenceManager()
+  Future<int> reset([VoidCallback Function(int o)? currentval]) async {
+    final val = await SkeletonDBModelSequenceManager()
         .sequence(SequenceIdentitySequence.getInstance, false, reset: true);
     if (currentval != null) {
       currentval(val);
@@ -1583,7 +1591,7 @@ class IdentitySequence {
 
 /// End Region SEQUENCE IdentitySequence
 
-class AgrotechDBModelSequenceManager extends SqfEntityProvider {
-  AgrotechDBModelSequenceManager() : super(AgrotechDBModel());
+class SkeletonDBModelSequenceManager extends SqfEntityProvider {
+  SkeletonDBModelSequenceManager() : super(SkeletonDBModel());
 }
 // END OF ENTITIES
